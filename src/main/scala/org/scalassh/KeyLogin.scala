@@ -1,6 +1,5 @@
 package org.scalassh
 
-import util.matching.Regex.Match
 import scala.Some
 import com.jcraft.jsch.{Session, JSch}
 
@@ -27,6 +26,9 @@ case class KeyLogin(username: String, keyFileLocation: String, keyPassphrase: Op
 }
 
 object KeyLogin{
+  def apply(host: String, username: String, keyFileLocation: String): Session = apply(Host(host), username, keyFileLocation)
   def apply(host: Host, username: String, keyFileLocation: String): Session = KeyLogin(username, keyFileLocation).login(host)
+
+  def apply(host: String, username: String, keyFileLocation: String, keyPassphrase: String): Session = apply(Host(host), username, keyFileLocation, keyPassphrase)
   def apply(host: Host, username: String, keyFileLocation: String, keyPassphrase: String): Session = KeyLogin(username, keyFileLocation, Some(keyPassphrase)).login(host)
 }

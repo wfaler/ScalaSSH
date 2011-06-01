@@ -23,4 +23,5 @@ case class UsernamePasswordLogin(username: String, password: String) extends Log
 
 object UsernamePasswordLogin{
   def apply(host: Host, username: String, password: String): Session = UsernamePasswordLogin(username, password).login(host)
+  def apply(host: String, username: String, password: String): Session = UsernamePasswordLogin(username, password).login(host)
 }
