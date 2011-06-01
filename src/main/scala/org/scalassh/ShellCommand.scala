@@ -12,7 +12,7 @@ import org.scalassh.SshSession._
 
 trait ShellCommand {
 
-  def execute(command: String, session: Session, checkIntervalMs: Int = 50): CommandResult = {
+  def execute(command: String, checkIntervalMs: Int = 50): CommandResult = {
     val channel = session.openChannel("exec").asInstanceOf[ChannelExec]
     val output = new ByteArrayOutputStream
     channel.setOutputStream(output)
@@ -37,15 +37,15 @@ case class CommandResult(exitCode: Int, output: String)
 
 
 object CommandTest extends App{
-  ssh(UsernamePasswordLogin(Host("localhost"), "username", "password"))(session => {
-    val result = Ls(session)
+  ssh(UsernamePasswordLogin(Host("localhost"), "username", "password")){
+    val result = Ls("ltr")
     println("Exit Code: " + result.exitCode)
     println("Output: " + result.output)
 
-  })
+  }
 }
 
 object Ls extends ShellCommand{
   // could obviously take ls opts and return a strongly typed List of files returned
-  def apply(session: Session) = execute("ls -ltr", session)
+  def apply(opts: String) = execute("ls -" + opts)
 }

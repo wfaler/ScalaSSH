@@ -1,6 +1,7 @@
 package org.scalassh
 
 import com.jcraft.jsch.Session
+import util.DynamicVariable
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,13 +12,17 @@ import com.jcraft.jsch.Session
  */
 
 object SshSession {
+  private val _session = new DynamicVariable[Session](null)
+  def session = _session value
 
-  def ssh(session: Session)(func: (Session) => Unit): Unit = {
-    func(session)
+  def ssh(session: Session)(func: => Unit): Unit = {
+    _session.withValue(session){
+      func
+    }
     session.disconnect
   }
 
-  def ssh(host: Host)(func: (Session) => Unit): Unit = {
+  def ssh(host: Host)(func: => Unit): Unit = {
     // lookup login credential config in ${user.home}/.scalassh/${hostname}
     //ssh(session, func)
   }
