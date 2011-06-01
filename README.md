@@ -9,6 +9,7 @@ At the moment, the functionality is limited to executing one- or any arbitrary n
 * nohup prefixed commands do not seem to work on Ubuntu or OS X, any commands run in nohup will stop executing once the command closes (will investigate further)
 * Due to Jsch limitations, each command is executed in isolation, in other words absolute paths will need to be used, as prior "cd"'s will not be acknowledged.
 * Piping commands together in a single Scala command has not been tested - this may or may not work, depending on when the exit code is returned (after each command? after all commands?).
+* an obvious assumption for this framework is that it is aimed to interact with platforms other than Windows (though using it as a client on Windows should work)
 
 ## Usage
 You can login using either username/password or username/key-file login.
@@ -78,3 +79,6 @@ On Linux, this is typically done by running:
 	%admin ALL=NOPASSWD: ALL
 	
 If you wish, you may make this more restrictive by explicitly stating which commands will not require a password prompt instead of only giving a blanket no-prompt to everything run in sudo.
+
+## Contributing
+Considering the amount of *nix commands around and their standalone nature, contributions are more than welcome! Fork the repo and start implementing your favourite command in a type-safe manner.
