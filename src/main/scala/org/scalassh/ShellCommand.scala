@@ -21,7 +21,7 @@ trait ShellCommand {
     channel.connect
 
     var exit = -1
-    while(exit < 0){
+    while(exit < 0){ // ugly loop, but exitStatus seems to be only clue Jsch gives us whether something has completed
       exit = channel.getExitStatus
       Thread.sleep(checkIntervalMs)
     }
