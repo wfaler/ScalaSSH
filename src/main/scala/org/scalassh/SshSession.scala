@@ -45,7 +45,7 @@ object SshSession {
         in.close
         val login = {
 
-          // this if-else stuff needs cleaning up and probably a dedicated ConfigurationReader trait
+          // TODO this if-else stuff needs cleaning up and probably a dedicated ConfigurationReader trait
           if(props.getProperty("login") == "password"){
             UsernamePasswordLogin(props.getProperty("username"), props.getProperty("password"))
           }else if(props.getProperty("login") == "key"){
