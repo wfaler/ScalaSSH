@@ -23,7 +23,6 @@ trait Command {
     var exit = -1
     val startTime = System.currentTimeMillis
     while(exit < 0 && !timedOut(timeoutMs, startTime)){ // ugly loop, but exitStatus seems to be only clue Jsch gives us whether something has completed
-      println("hello")
       exit = channel.getExitStatus
       Thread.sleep(checkIntervalMs)
     }
