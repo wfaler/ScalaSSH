@@ -45,16 +45,10 @@ trait Command {
 
 }
 
-case class CommandResult(exitCode: Int, output: String)
-
-
-object CommandTest extends App{
-  ssh("localhost"){
-    println(Command("ls -ltr").output)
-  }
-}
-
-
 object Command extends Command{
   def apply(command: String, timeoutMs: Option[Long] = None, checkIntervalMs: Long = 50) = execute(command, timeoutMs, checkIntervalMs)
 }
+
+case class CommandResult(exitCode: Int, output: String)
+
+
