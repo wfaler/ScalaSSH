@@ -15,7 +15,7 @@ trait Command {
   def execute(command: String, timeoutMs: Option[Long] = None, checkIntervalMs: Long = 50): CommandResult = {
     val channel = session.openChannel("exec").asInstanceOf[ChannelExec]
     val output = new ByteArrayOutputStream
-    channel.setOutputStream(System.out)
+    channel.setOutputStream(output)
     channel.setCommand(command)
 
     channel.connect
