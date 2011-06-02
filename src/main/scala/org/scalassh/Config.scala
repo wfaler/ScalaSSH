@@ -1,5 +1,7 @@
 package org.scalassh
 
+import java.util.Properties
+
 /**
  * Created by IntelliJ IDEA.
  * User: wfaler
@@ -9,7 +11,7 @@ package org.scalassh
  */
 
 object Config {
+  var loginBuilders = Map("password" -> new UsernamePasswordLoginBuilder, "key" -> new KeyLoginBuilder)
   var loginTimeout = 20000
   var strictHostKeyChecking = false
-
 }

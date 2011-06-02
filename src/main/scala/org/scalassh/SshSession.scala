@@ -43,17 +43,7 @@ object SshSession {
         val in = new FileInputStream(file)
         props.load(in)
         in.close
-        val login = {
-
-          // TODO this if-else stuff needs cleaning up and probably a dedicated ConfigurationReader trait
-          if(props.getProperty("login") == "password"){
-            UsernamePasswordLogin(props.getProperty("username"), props.getProperty("password"))
-          }else if(props.getProperty("login") == "key"){
-            KeyLogin(props.getProperty("username"), props.getProperty("keyfile"), Option(props.getProperty("passphrase")))
-          }else{
-            throw new IllegalArgumentException("property file " + file.getAbsoluteFile + " does not contain a valid Login type")
-          }
-        }
+        val login = Config.loginBuilders(props.getProperty("login")).build(props)
         map.put(host, login)
         login
       }

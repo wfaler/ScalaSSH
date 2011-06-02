@@ -82,3 +82,7 @@ If you wish, you may make this more restrictive by explicitly stating which comm
 
 ## Contributing
 Considering the amount of *nix commands around and their standalone nature, contributions are more than welcome! Fork the repo and start implementing your favourite command in a type-safe manner.
+
+## Testing
+Testing has been done on Mac OS X 10.6. The tests setup a test directory in ${java.io.tmpdir} and use this as the basis for it's testing. Tests assume that you have a localhost.properties file in
+your ${user.home}/.scalassh directory with login details for an ssh account on your machine that has access to the java.io.tmpdir
