@@ -23,11 +23,11 @@ class ConfigAndEnvironmentSetupForTestingTest extends Specification{
     "find a LoginBuilder" in {
       (Config.loginBuilders("password").isInstanceOf[UsernamePasswordLoginBuilder]) must beTrue
     }
-    "invoking login on LoginBuilders returned Login" in{
+    "return a Login when LoginBuilders.login is called" in{
       login = Config.loginBuilders("password").build(props)
       login must be_!=(null)
     }
-    "login must have a username and password" in {
+    " give me a login with a username and password" in {
       login.asInstanceOf[UsernamePasswordLogin].password must be_!=(null)
       login.asInstanceOf[UsernamePasswordLogin].username must be_!=(null)
     }
