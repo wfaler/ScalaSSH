@@ -1,6 +1,7 @@
 # ScalaSSH - Type-safe shell scripting over SSH with Scala
 This project will aim to provide a strongly typed, extensible way of interacting with a shell over ssh via Scala: pwd, ls, apt-get etc will be strongly typed objects, Ls will return a List of files and so on. 
-The project is built with [Simple Build Tool ("sbt")](http://code.google.com/p/simple-build-tool/) and relies on [Jsch](http://www.jcraft.com/jsch/) for its SSH implementation.
+The project is built with [Simple Build Tool ("sbt") 0.10](http://code.google.com/p/simple-build-tool/) and relies on [Jsch](http://www.jcraft.com/jsch/) for its SSH implementation.
+For more information, ideas and help, please use the [Google Groups list/forum](https://groups.google.com/forum/#!forum/scalassh).
 
 ## Features
 At the moment, the functionality is limited to executing one- or any arbitrary number of shell commands over an ssh connection within a single ssh session closure. We will however strive to add type-safe versions with proper return types of common bash commands such as apt-get, ls, pwd etc soon enough, so you get a proper Scala DSL for shell scripting.
